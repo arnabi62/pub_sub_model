@@ -14,15 +14,15 @@ public class Main {
         Thread th2 = new Thread(new Subscriber("S2", broker));
 
         broker.subscribeTopic("S1", t1);
-        broker.subscribeTopic("S1", t1);
+        broker.subscribeTopic("S1", t2);
         broker.subscribeTopic("S2", t2);
 
         th1.start();
         th2.start();
 
         p1.publish(t1.getName(), new Message("message1 for topic T1"));
-        p1.publish( t1.getName(), new Message("message2 for topic T1"));
         p1.publish(t2.getName(), new Message("message2 for topic T2"));
+        p1.publish(t2.getName(), new Message("message1 for topic T2"));
 
         try {
             Thread.sleep(100);
